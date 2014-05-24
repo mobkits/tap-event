@@ -22,12 +22,11 @@ function Tap(callback) {
       return
 
     var el = this;
-    var parentNode = el.parentNode;
 
     cancelEvents.forEach(function (event) {
       document.addEventListener(event, cleanup)
     })
-    document.body.addEventListener('touchmove', cleanup);
+    el.addEventListener('touchmove', cleanup);
 
     endEvents.forEach(function (event) {
       document.addEventListener(event, done)
@@ -72,7 +71,7 @@ function Tap(callback) {
       cancelEvents.forEach(function (event) {
         document.removeEventListener(event, cleanup)
       })
-      document.body.removeEventListener('touchmove', cleanup);
+      el.removeEventListener('touchmove', cleanup);
 
       endEvents.forEach(function (event) {
         document.removeEventListener(event, done)
