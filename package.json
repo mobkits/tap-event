@@ -19,5 +19,7 @@
   },
   "scripts": {
     "lint": "standardberry index.js"
-  }
+  },
+  "repository": "https://github.com/chemzqm/tap-event",
+  "license": "MIT"
 }
