@@ -10,6 +10,7 @@
     "event",
     "listener"
   ],
+  "main": "index.js",
   "files": [
     "index.js"
   ],
