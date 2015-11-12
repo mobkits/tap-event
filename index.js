@@ -30,6 +30,7 @@ function Tap(callback, options) {
     if (!e1.touches || e1.touches.length > 1) return
 
     var el = this;
+    var args = arguments;
 
     var timeout_id = setTimeout(cleanup, timeout)
 
@@ -68,9 +69,10 @@ function Tap(callback, options) {
         preventDefault.call(e2)
       }
 
+      args[0] = e2;
       // calls the handler with the `end` event,
       // but i don't think it matters.
-      callback.call(el, e2)
+      callback.apply(el, args)
     }
 
     // cleanup end events
