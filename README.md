@@ -1,7 +1,6 @@
 # Tap Event
 
 [![Build Status](https://secure.travis-ci.org/chemzqm/tap-event.svg)](http://travis-ci.org/chemzqm/tap-event)
-[![Coverage Status](https://coveralls.io/repos/chemzqm/tap-event/badge.svg?branch=master&service=github)](https://coveralls.io/github/chemzqm/tap-event?branch=master)
 
 Make your `touchstart` event listeners into a `tap` event listener!
 
