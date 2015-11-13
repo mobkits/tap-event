@@ -13,6 +13,10 @@ What is "correct" behavior? The `tap` event:
 
 Preserve context and arguments in 1.1.0, works with delegate easily
 
+## Install
+
+    npm install component-tap-event -S
+
 ## API
 
 ```js
