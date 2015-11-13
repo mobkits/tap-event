@@ -1,10 +1,5 @@
-var cancelEvents = [
-  'touchcancel',
-  'touchstart',
-]
-
 var endEvents = [
-  'touchend',
+  'touchend'
 ]
 
 module.exports = Tap
@@ -29,18 +24,16 @@ function Tap(callback, options) {
     // tap should only happen with a single finger
     if (!e1.touches || e1.touches.length > 1) return
 
-    var el = this;
+    var el = e1.target
+    var context = this
     var args = arguments;
 
     var timeout_id = setTimeout(cleanup, timeout)
 
-    cancelEvents.forEach(function (event) {
-      document.addEventListener(event, cleanup)
-    })
-    el.addEventListener('touchmove', cleanup);
+    el.addEventListener('touchmove', cleanup)
 
     endEvents.forEach(function (event) {
-      document.addEventListener(event, done)
+      el.addEventListener(event, done)
     })
 
     function done(e2) {
@@ -49,6 +42,7 @@ function Tap(callback, options) {
       // it'll execute this on the same touchstart.
       // this filters out the same touchstart event.
       if (e1 === e2) return
+      if (e2.clientX !== e1.clientX || e2.clientY !== e1.clientY) return
 
       cleanup()
 
@@ -59,20 +53,19 @@ function Tap(callback, options) {
       var preventDefault = e1.preventDefault
       var stopPropagation = e1.stopPropagation
 
-      e2.stopPropagation = function () {
+      e1.stopPropagation = function () {
         stopPropagation.call(e1)
         stopPropagation.call(e2)
       }
 
-      e2.preventDefault = function () {
+      e1.preventDefault = function () {
         preventDefault.call(e1)
         preventDefault.call(e2)
       }
 
-      args[0] = e2;
       // calls the handler with the `end` event,
       // but i don't think it matters.
-      callback.apply(el, args)
+      callback.apply(context, args)
     }
 
     // cleanup end events
@@ -85,13 +78,10 @@ function Tap(callback, options) {
 
       clearTimeout(timeout_id)
 
-      cancelEvents.forEach(function (event) {
-        document.removeEventListener(event, cleanup)
-      })
-      el.removeEventListener('touchmove', cleanup);
+      el.removeEventListener('touchmove', cleanup)
 
       endEvents.forEach(function (event) {
-        document.removeEventListener(event, done)
+        el.removeEventListener(event, done)
       })
     }
   }

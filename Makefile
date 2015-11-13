@@ -1,13 +1,13 @@
-build: components index.js
-	@component-build --dev
+test:
+	@open http://localhost:8080/bundle
+	@webpack-dev-server 'mocha!./test/test.js' --inline --hot --devtool eval
 
-components: component.json
-	@component-install --dev
+test-karma:
+	node_modules/.bin/karma start --single-run
 
-watch:
-	@component build --dev -w
+test-coveralls:
+	@echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
+	@node_modules/.bin/karma start --single-run && \
+		cat ./coverage/lcov/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
-clean:
-	rm -rf components build
-
-.PHONY: clean start test test-browser
+.PHONY: clean test watch
