@@ -11,6 +11,8 @@ What is "correct" behavior? The `tap` event:
 - shouldn't be triggered if there's ever more than a single finger on the surface at all.
 - should never trigger the `click` event.
 
+Preserve context and arguments in 1.1.0, works with delegate easily
+
 ## API
 
 ```js
