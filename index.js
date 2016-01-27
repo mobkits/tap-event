@@ -42,7 +42,13 @@ function Tap(callback, options) {
       // it'll execute this on the same touchstart.
       // this filters out the same touchstart event.
       if (e1 === e2) return
-      if (e2.clientX !== e1.clientX || e2.clientY !== e1.clientY) return
+      var t1 = e1.touches[0]
+      var t2 = e2.touches[0]
+      if (t1 == null || t2 == null ||
+          t1.clientX != t2.clientX ||
+          t1.clientY != t2.clientY) {
+        return
+      }
 
       cleanup()
 
