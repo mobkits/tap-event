@@ -1,6 +1,6 @@
 test:
 	@open http://localhost:8080/bundle
-	@webpack-dev-server 'mocha!./test/test.js' --inline --hot --devtool eval
+	@webpack-dev-server 'mocha!./test/test.js' --inline --hot --devtool cheap-module-eval-source-map
 
 test-karma:
 	node_modules/.bin/karma start --single-run
