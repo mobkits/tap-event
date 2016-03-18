@@ -53,21 +53,6 @@ describe('tap', function() {
     })
   })
 
-  it('should not tap when clinetX or clientY changed', function (done) {
-    var fired
-    function ontap() {
-      fired = true
-    }
-    el.addEventListener('touchstart', tap(ontap))
-    var touch = Touch(el)
-    touch.fireEvent('touchstart', 1, 1)
-    setTimeout(function () {
-      touch.fireEvent('touchend', 1, 2)
-      assert.notEqual(fired, true)
-      done()
-    },100)
-  })
-
   it('should preserve context and arguments', function () {
     var context = {}
     var fired
