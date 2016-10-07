@@ -58,7 +58,7 @@ function Tap(callback, options) {
       }
 
       e1.preventDefault = function () {
-        preventDefault.call(e1)
+        //preventDefault.call(e1)
         preventDefault.call(e2)
       }
 
